@@ -7,4 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent  {
   title = 'Hello World!';
+  niceGreeting = 'Hello I was here! :)';
+
+  changeMyGreeting(): void {
+    this.niceGreeting = 'LV ends soon, juhu!';
+  }
 }
