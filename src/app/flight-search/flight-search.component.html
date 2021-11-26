@@ -20,6 +20,7 @@
         </button>
       </div>
     </form>
+    <button (click)="addFlight()">Add</button>
     <div class="card">
       <table class="table table-condensed" *ngIf="flights.length > 0">
         <caption>Flight Search Results</caption>
@@ -29,16 +30,18 @@
             <th id="from-flight">From</th>
             <th id="to-flight">To</th>
             <th id="date-flight">Date</th>
+            <th id="date-flight">Delayed</th>
             <th id="select-flight"></th>
             <th id="edit-flight"></th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let f of flights" [class.active]="f === selectedFlight">
+          <tr *ngFor="let f of (flights | status:false)" [class.active]="f === selectedFlight">
             <td>{{ f.id }}</td>
-            <td>{{ f.from }}</td>
-            <td>{{ f.to }}</td>
+            <td>{{ f.from | city:'short'}}</td>
+            <td>{{ f.to| city:'long' }}</td>
             <td>{{ f.date | date: "dd.MM.yyyy HH:mm" }}</td>
+            <td>{{f.delayed}}</td>
             <td>
               <button class="btn btn-primary" (click)="select(f)">Select</button>
             </td>
@@ -55,14 +58,14 @@
       </div>
       <div class="content">
 
-        <div >
+        <div>
           {{ message }}
         </div>
 
         <form>
           <div class="form-group">
             <label>Id</label>
-            <input name="id" class="form-control"[(ngModel)]="selectedFlight.id">
+            <input name="id" class="form-control" [(ngModel)]="selectedFlight.id">
           </div>
 
           <div class="form-group">

@@ -1,31 +1,36 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { CONFIG } from '../app.module';
+import { AbstractFlightService } from './abstract-flight.service';
+import { DummyFlightService } from './dummy-flight.service';
 import { Flight } from './flight';
+import { FlightService } from './flight.service';
 
 @Component({
   selector: 'app-flight-search',
   templateUrl: './flight-search.component.html',
+  providers: [
+    {
+      provide: FlightService,
+      useClass: FlightService
+    }
+  ]
 })
 export class FlightSearchComponent {
   from: string = '';
   to: string = '';
   flights: Array<Flight> = [];
-  selectedFlight: Flight | null = null;
+  selectedFlight?: Flight;
   message: string = '';
-  constructor(private http: HttpClient) {}
+  constructor(private flightService: FlightService, @Inject(CONFIG) coolConfig: string) {
+    console.log(coolConfig)
+  }
 
   select(f: Flight): void {
     this.selectedFlight = f;
   }
 
   search(): void {
-    const url = 'http://www.angular.at/api/flight';
-
-    const headers = new HttpHeaders().set('Accept', 'application/json');
-
-    const params = new HttpParams().set('from', this.from).set('to', this.to);
-
-    this.http.get<Flight[]>(url, { headers, params }).subscribe({
+    this.flightService.search(this.from, this.to).subscribe({
       next: (flights: Flight[]) => {
         this.flights = flights;
       },
@@ -36,23 +41,29 @@ export class FlightSearchComponent {
   }
 
   save(): void {
-    const url = 'http://www.angular.at/api/flight';
-
-    const headers = new HttpHeaders()
-      .set('Accept', 'application/json');
-
-    this.http
-      .post<Flight>(url, this.selectedFlight, { headers })
-      .subscribe({
-        next: flight => {
+    if (this.selectedFlight) {
+      this.flightService.save(this.selectedFlight).subscribe({
+        next: (flight) => {
           this.selectedFlight = flight;
           this.message = 'Update successful!';
         },
-        error: errResponse => {
+        error: (errResponse) => {
           this.message = 'Error on updating the Flight';
           console.error(this.message, errResponse);
-        }
+        },
       });
+    } else {
+      this.message = 'No flight selected to update!';
+    }
   }
 
+  addFlight() {
+    this.flights.push(  {
+      id: 1,
+      from: 'Random Destination',
+      to: 'Random Destination',
+      date: new Date().toISOString(),
+      delayed: false,
+    },);
+  }
 }
