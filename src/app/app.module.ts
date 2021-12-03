@@ -1,16 +1,11 @@
 import { InjectionToken, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { FlightBookingModule } from './flight-booking/flight-booking.module';
+import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { FlightSearchComponent } from './flight-search/flight-search.component';
-import { AbstractFlightService } from './flight-search/abstract-flight.service';
-import { FlightService } from './flight-search/flight.service';
-import { CityPipe } from './shared/city.pipe';
-import { StatusPipe } from './shared/status.pipe';
-
 
 export const CONFIG = new InjectionToken<string>('config', {
   providedIn: 'root',
@@ -22,13 +17,9 @@ export const CONFIG = new InjectionToken<string>('config', {
   declarations: [
     AppComponent,
     SidebarComponent,
-    NavbarComponent,
-    FlightSearchComponent,
-    CityPipe,
-    StatusPipe,
+    NavbarComponent
   ],
-  imports: [BrowserModule, HttpClientModule, FormsModule, HttpClientModule],
-  providers: [FlightService],
+  imports: [BrowserModule, HttpClientModule, FlightBookingModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

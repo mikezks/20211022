@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+
+import { AbstractFlightService } from './abstract-flight.service';
+import { Flight } from '../entities/flight';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AbstractFlightService } from './abstract-flight.service';
-import { Flight } from './flight';
 
 @Injectable()
 export class FlightService implements AbstractFlightService {

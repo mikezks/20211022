@@ -1,9 +1,8 @@
 import { Component, Inject } from '@angular/core';
-import { CONFIG } from '../app.module';
-import { AbstractFlightService } from './abstract-flight.service';
-import { DummyFlightService } from './dummy-flight.service';
-import { Flight } from './flight';
-import { FlightService } from './flight.service';
+import { CONFIG } from '../../app.module';
+
+import { Flight } from '../entities/flight';
+import { FlightService } from '../data-access/flight.service';
 
 @Component({
   selector: 'app-flight-search',

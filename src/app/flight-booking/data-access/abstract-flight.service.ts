@@ -1,10 +1,10 @@
+import { DummyFlightService } from './dummy-flight.service';
+import { Flight } from '../entities/flight';
+import { FlightService } from './flight.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { DummyFlightService } from './dummy-flight.service';
-import { Flight } from './flight';
-import { FlightService } from './flight.service';
 
 @Injectable(/*{
   providedIn: 'root',
