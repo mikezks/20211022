@@ -18,7 +18,6 @@ import { FlightEditComponent } from './feature/flight-edit/flight-edit.component
   imports: [
     CommonModule,
     SharedModule,
-    FormsModule,
     FlightBookingRoutingModule
   ]
 })
