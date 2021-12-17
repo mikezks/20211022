@@ -1,7 +1,5 @@
 import { Routes } from "@angular/router";
 import { HomeComponent } from "./core/feature/home/home.component";
-import { FlightSearchComponent } from "./flight-booking/feature/flight-search/flight-search.component";
-import { PassengerSearchComponent } from "./flight-booking/feature/passenger-search/passenger-search.component";
 
 export const APP_ROUTES: Routes = [
   {
@@ -14,12 +12,9 @@ export const APP_ROUTES: Routes = [
     component: HomeComponent
   },
   {
-    path: 'flight-booking/flight-search',
-    component: FlightSearchComponent
-  },
-  {
-    path: 'flight-booking/passenger-search',
-    component: PassengerSearchComponent
+    path: 'flight-booking',
+    loadChildren: () => import('./flight-booking/flight-booking.module')
+      .then(esm => esm.FlightBookingModule)
   },
   {
     path: '**',

@@ -23,7 +23,7 @@ export const CONFIG = new InjectionToken<string>('config', {
     HttpClientModule,
     RouterModule.forRoot(APP_ROUTES),
     CoreModule,
-    FlightBookingModule
+    // FlightBookingModule
   ],
   bootstrap: [AppComponent],
 })
