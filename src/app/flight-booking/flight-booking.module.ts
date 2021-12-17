@@ -4,9 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { FlightCardComponent } from './ui/flight-card/flight-card.component';
+import { PassengerSearchComponent } from './feature/passenger-search/passenger-search.component';
 
 @NgModule({
-  declarations: [FlightSearchComponent, FlightCardComponent],
+  declarations: [FlightSearchComponent, FlightCardComponent, PassengerSearchComponent],
   imports: [
     CommonModule,
     SharedModule,

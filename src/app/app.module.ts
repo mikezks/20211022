@@ -4,8 +4,7 @@ import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FlightBookingModule } from './flight-booking/flight-booking.module';
 import { HttpClientModule } from '@angular/common/http';
-import { NavbarComponent } from './navbar/navbar.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { CoreModule } from './core/core.module';
 
 export const CONFIG = new InjectionToken<string>('config', {
   providedIn: 'root',
@@ -15,13 +14,12 @@ export const CONFIG = new InjectionToken<string>('config', {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SidebarComponent,
-    NavbarComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    CoreModule,
     FlightBookingModule
   ],
   bootstrap: [AppComponent],
