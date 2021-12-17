@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
-import { CONFIG } from '../../app.module';
+import { CONFIG } from '../../../app.module';
 
-import { Flight } from '../entities/flight';
-import { FlightService } from '../data-access/flight.service';
+import { Flight } from '../../entities/flight';
+import { FlightService } from '../../data-access/flight.service';
 
 @Component({
   selector: 'app-flight-search',
@@ -15,11 +15,17 @@ import { FlightService } from '../data-access/flight.service';
   ]
 })
 export class FlightSearchComponent {
-  from: string = '';
-  to: string = '';
+  from: string = 'Hamburg';
+  to: string = 'Graz';
   flights: Array<Flight> = [];
   selectedFlight?: Flight;
   message: string = '';
+
+  basket: Record<number, boolean> = {
+    3: true,
+    5: true
+  };
+
   constructor(private flightService: FlightService, @Inject(CONFIG) coolConfig: string) {
     console.log(coolConfig)
   }

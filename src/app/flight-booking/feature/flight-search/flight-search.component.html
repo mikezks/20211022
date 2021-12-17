@@ -1,0 +1,71 @@
+<div class="card">
+  <div class="header">
+    <h2 class="title">Flight Search</h2>
+  </div>
+
+  <div class="content">
+    <form>
+      <div class="form-group">
+        <label>From:</label>
+        <input [(ngModel)]="from" name="from" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>To:</label>
+        <input [(ngModel)]="to" name="to" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <button [disabled]="!to || !from" (click)="search()" class="btn btn-default">
+          Search
+        </button>
+      </div>
+    </form>
+    <button (click)="addFlight()" class="btn btn-default">Add</button>
+  </div>
+</div>
+
+<div class="row">
+  <div
+    *ngFor="let flight of flights"
+    class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <app-flight-card
+      [item]="flight"
+      [(selected)]="basket[flight.id]">
+    </app-flight-card>
+  </div>
+</div>
+
+<div class="card">
+  <div class="content">
+    <pre>{{ basket | json }}</pre>
+  </div>
+</div>
+
+<!-- <div class="card" *ngIf=" selectedFlight">
+  <div class="header">
+    <h2 class="title">Flight Edit</h2>
+  </div>
+  <div class="content">
+
+    <div>
+      {{ message }}
+    </div>
+
+    <form>
+      <div class="form-group">
+        <label>Id</label>
+        <input name="id" class="form-control" [(ngModel)]="selectedFlight.id">
+      </div>
+
+      <div class="form-group">
+        <label>From</label>
+        <input name="from" class="form-control" [(ngModel)]="selectedFlight.from">
+      </div>
+
+      <div class="form-group">
+        <button (click)="save()" class="btn btn-default">Save</button>
+      </div>
+    </form>
+
+  </div>
+</div> -->

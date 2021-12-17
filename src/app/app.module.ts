@@ -19,7 +19,11 @@ export const CONFIG = new InjectionToken<string>('config', {
     SidebarComponent,
     NavbarComponent
   ],
-  imports: [BrowserModule, HttpClientModule, FlightBookingModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FlightBookingModule
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
