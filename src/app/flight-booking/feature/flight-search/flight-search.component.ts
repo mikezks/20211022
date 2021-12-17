@@ -45,6 +45,11 @@ export class FlightSearchComponent {
     });
   }
 
+  updateSelection(id: number, selected: boolean): void {
+    this.selectedFlight = selected ? this.flights.find(f => f.id === id) : undefined;
+    this.basket[id] = selected;
+  }
+
   save(): void {
     if (this.selectedFlight) {
       this.flightService.save(this.selectedFlight).subscribe({
