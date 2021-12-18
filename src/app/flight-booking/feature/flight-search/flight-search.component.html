@@ -7,23 +7,55 @@
     <form #searchForm="ngForm">
       <div class="form-group">
         <label>From:</label>
-        <input [(ngModel)]="from" name="from" class="form-control" required />
+        <input [(ngModel)]="from" name="from" class="form-control" required minlength="3" city />
       </div>
       <div
         class="alert alert-danger"
         *ngIf="searchForm?.controls?.['from']?.hasError('required')">
         This is a mandatory field, please enter a value!
       </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="searchForm?.controls?.['from']?.hasError('minlength')">
+        Please enter the necessary chars!<br>
+        You entered {{ searchForm?.controls?.['from']?.errors?.minlength.actualLength }} chars,
+        but {{ searchForm?.controls?.['from']?.errors?.minlength.requiredLength }} are necessary!
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="searchForm?.controls?.['from']?.hasError('city')">
+        Please enter a valid city name!
+      </div>
+      <pre
+        *ngIf="searchForm?.controls?.['from']?.errors as errors">{{
+          errors | json
+      }}</pre>
 
       <div class="form-group">
         <label>To:</label>
-        <input [(ngModel)]="to" name="to" class="form-control" required />
+        <input [(ngModel)]="to" name="to" class="form-control" required minlength="3" city />
       </div>
       <div
         class="alert alert-danger"
         *ngIf="searchForm?.controls?.['to']?.hasError('required')">
         This is a mandatory field, please enter a value!
       </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="searchForm?.controls?.['to']?.hasError('minlength')">
+        Please enter the necessary chars!<br>
+        You entered {{ searchForm?.controls?.['to']?.errors?.minlength.actualLength }} chars,
+        but {{ searchForm?.controls?.['to']?.errors?.minlength.requiredLength }} are necessary!
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="searchForm?.controls?.['to']?.hasError('city')">
+        Please enter a valid city name!
+      </div>
+      <pre
+        *ngIf="searchForm?.controls?.['to']?.errors as errors">{{
+          errors | json
+      }}</pre>
 
       <div class="form-group">
         <button [disabled]="!searchForm?.valid" (click)="search()" class="btn btn-default">

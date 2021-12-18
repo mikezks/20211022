@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { Flight } from '../flight-booking/entities/flight';
+import { Flight } from '../../flight-booking/entities/flight';
 
 @Pipe({
   name: 'status',

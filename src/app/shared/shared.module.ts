@@ -1,13 +1,15 @@
-import { CityPipe } from './city.pipe';
+import { CityPipe } from './pipes/city.pipe';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { StatusPipe } from './status.pipe';
+import { StatusPipe } from './pipes/status.pipe';
 import { FormsModule } from '@angular/forms';
+import { CityValidatorDirective } from './validation/city-validator.directive';
 
 @NgModule({
   declarations: [
     StatusPipe,
-    CityPipe
+    CityPipe,
+    CityValidatorDirective
   ],
   imports: [
     CommonModule,
@@ -16,6 +18,7 @@ import { FormsModule } from '@angular/forms';
   exports: [
     StatusPipe,
     CityPipe,
+    CityValidatorDirective,
     FormsModule
 ]
 })
