@@ -6,5 +6,78 @@
   <div class="content">
     <p>ID: {{ id }}</p>
     <p>Show Details: {{ showDetails }}</p>
+
+    <form [formGroup]="editForm">
+      <div class="form-group">
+        <label>ID:</label>
+        <input formControlName="id" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>From:</label>
+        <input formControlName="from" class="form-control" />
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="editForm.controls?.['from']?.hasError('required')">
+        This is a mandatory field, please enter a value!
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="editForm.controls?.['from']?.hasError('minlength')">
+        Please enter the necessary chars!<br>
+        You entered {{ editForm.controls?.['from']?.errors?.minlength.actualLength }} chars,
+        but {{ editForm.controls?.['from']?.errors?.minlength.requiredLength }} are necessary!
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="editForm.controls?.['from']?.hasError('city')">
+        Please enter a valid city name!<br>
+        You entered {{ editForm.controls?.['from']?.errors?.city.actualCity }},
+        but {{ editForm.controls?.['from']?.errors?.city.validCities.join(', ') }} are allowed only!
+      </div>
+      <pre
+        *ngIf="editForm.controls?.['from']?.errors as errors">{{
+          errors | json
+      }}</pre>
+
+      <div class="form-group">
+        <label>To:</label>
+        <input formControlName="to" class="form-control" />
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="editForm.controls?.['to']?.hasError('required')">
+        This is a mandatory field, please enter a value!
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="editForm.controls?.['to']?.hasError('minlength')">
+        Please enter the necessary chars!<br>
+        You entered {{ editForm.controls?.['to']?.errors?.minlength.actualLength }} chars,
+        but {{ editForm.controls?.['to']?.errors?.minlength.requiredLength }} are necessary!
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="editForm.controls?.['to']?.hasError('city')">
+        Please enter a valid city name!<br>
+        You entered {{ editForm.controls?.['to']?.errors?.city.actualCity }},
+        but {{ editForm.controls?.['to']?.errors?.city.validCities.join(', ') }} are allowed only!
+      </div>
+      <pre
+        *ngIf="editForm.controls?.['to']?.errors as errors">{{
+          errors | json
+      }}</pre>
+
+      <div class="form-group">
+        <label>Date:</label>
+        <input formControlName="date" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <button [disabled]="!editForm.valid" (click)="save()" class="btn btn-default">
+          Save
+        </button>
+      </div>
+    </form>
   </div>
 </div>
