@@ -7,7 +7,7 @@
     <form #searchForm="ngForm">
       <div class="form-group">
         <label>From:</label>
-        <input [(ngModel)]="from" name="from" class="form-control" required minlength="3" city />
+        <input [(ngModel)]="from" name="from" class="form-control" required minlength="3" [city]="['Hamburg', 'Berlin']" />
       </div>
       <div
         class="alert alert-danger"
@@ -24,7 +24,9 @@
       <div
         class="alert alert-danger"
         *ngIf="searchForm?.controls?.['from']?.hasError('city')">
-        Please enter a valid city name!
+        Please enter a valid city name!<br>
+        You entered {{ searchForm?.controls?.['from']?.errors?.city.actualCity }},
+        but {{ searchForm?.controls?.['from']?.errors?.city.validCities.join(', ') }} are allowed only!
       </div>
       <pre
         *ngIf="searchForm?.controls?.['from']?.errors as errors">{{
@@ -33,7 +35,7 @@
 
       <div class="form-group">
         <label>To:</label>
-        <input [(ngModel)]="to" name="to" class="form-control" required minlength="3" city />
+        <input [(ngModel)]="to" name="to" class="form-control" required minlength="3" city="Graz,Wien" />
       </div>
       <div
         class="alert alert-danger"
@@ -50,7 +52,9 @@
       <div
         class="alert alert-danger"
         *ngIf="searchForm?.controls?.['to']?.hasError('city')">
-        Please enter a valid city name!
+        Please enter a valid city name!<br>
+        You entered {{ searchForm?.controls?.['to']?.errors?.city.actualCity }},
+        but {{ searchForm?.controls?.['to']?.errors?.city.validCities.join(', ') }} are allowed only!
       </div>
       <pre
         *ngIf="searchForm?.controls?.['to']?.errors as errors">{{
